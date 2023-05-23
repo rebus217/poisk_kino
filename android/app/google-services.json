@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "772824868676",
+    "project_id": "poisk-kino",
+    "storage_bucket": "poisk-kino.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772824868676:android:0282dc19d9299d1f635911",
+        "android_client_info": {
+          "package_name": "com.poiskkino.poisk_kino"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772824868676-uc2efb58klgg66r8vv9o3ibqn90argqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJk9wZ9mzxokT-_6I9v8aDeZLPt1megOk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772824868676-uc2efb58klgg66r8vv9o3ibqn90argqj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "772824868676-4g0vlq86i0krskl1intnc3vfspg019qr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.poiskkino.poiskKino"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

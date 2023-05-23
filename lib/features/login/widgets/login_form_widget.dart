@@ -43,8 +43,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
               const Text("Not Registered Yet?"),
               TextButton(
                   onPressed: () {
-                    debugPrint("Register");
-                    Navigator.of(context).pushNamed("/sing_up");
+                    _fetchLogin();
                   },
                   child: const Text("Register Now"))
             ],
@@ -52,5 +51,17 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
         ],
       ),
     );
+  }
+
+  void _fetchLogin() {
+    // debugPrint("Register");
+    // Navigator.of(context).pushNamed("/sing_up");
+    String login = loginController.text.trim();
+    String password = passwordController.text.trim();
+
+    if (login.isEmpty || password.isEmpty) {
+      //TODO: show error
+      return;
+    }
   }
 }
