@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poisk_kino/features/sing_up/widgets/widgets.dart';
 
 class SingUpScreen extends StatefulWidget {
   const SingUpScreen({super.key});
@@ -14,7 +15,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
       appBar: AppBar(
         title: const Text("Sing up"),
       ),
-      body: Placeholder(),
+      body: const RegisterFormWidget(),
     );
   }
 }

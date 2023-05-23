@@ -10,10 +10,9 @@ import 'package:poisk_kino/features/sing_up/sing_up.dart';
 final Map<String, StatefulWidget Function(BuildContext context)> routes = {
   "/": (BuildContext context) => const LandingScreen(),
   "/login": (BuildContext context) => const LoginScreen(),
-  "/singup": (BuildContext context) => const SingUpScreen(),
+  "/sing_up": (BuildContext context) => const SingUpScreen(),
   "/film_collection": (BuildContext context) => const FilmCollectionScreen(),
   "/film": (BuildContext context) => const FilmDetailsScreen(),
   "/films_list": (BuildContext context) => const FilmsListScreen(),
   "/search_film": (BuildContext context) => const SearchFilmScreen(),
-  
 };

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poisk_kino/features/login/login.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -14,7 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         title: const Text("Login Please"),
       ),
-      body: Placeholder(),
+      body: const LoginFormWidget(),
     );
   }
 }

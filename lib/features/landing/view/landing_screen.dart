@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:poisk_kino/features/login/view/login_screen.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({super.key});
