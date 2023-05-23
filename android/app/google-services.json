@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "130254661768",
+    "project_id": "crypto-list-app-36051",
+    "storage_bucket": "crypto-list-app-36051.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130254661768:android:8ea535fc850c3ace57173d",
+        "android_client_info": {
+          "package_name": "com.rebuscorp.learning_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130254661768-0fqt544rrg4v128qt831j504u0tlu7ei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvYf7IG6RKdMr6xrniEZWlT71MdTwaRxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130254661768-0fqt544rrg4v128qt831j504u0tlu7ei.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "130254661768-4kmjmrns0epgjpkpabmh80iub4mnts7g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.rebuscorp.learningFlutter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
