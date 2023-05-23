@@ -14,7 +14,7 @@ class _FilmCollectionScreenState extends State<FilmCollectionScreen> {
       appBar: AppBar(
         title: const Text("Collection"),
       ),
-      body: Placeholder(),
+      body: const Placeholder(),
     );
   }
 }

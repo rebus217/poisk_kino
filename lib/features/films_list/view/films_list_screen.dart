@@ -18,15 +18,15 @@ class _FilmsListScreenState extends State<FilmsListScreen> {
               onPressed: () {
                 Navigator.of(context).pushNamed("/search_film");
               },
-              icon: Icon(Icons.search)),
+              icon: const Icon(Icons.search)),
           IconButton(
               onPressed: () {
                 Navigator.of(context).pushNamed("/film_collection");
               },
-              icon: Icon(Icons.bookmark_border_outlined))
+              icon: const Icon(Icons.bookmark_border_outlined))
         ],
       ),
-      body: Placeholder(),
+      body: const Placeholder(),
     );
   }
 }

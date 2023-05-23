@@ -14,7 +14,7 @@ class _SearchFilmScreenState extends State<SearchFilmScreen> {
       appBar: AppBar(
         title: const Text("Search Film"),
       ),
-      body: Placeholder(),
+      body: const Placeholder(),
     );
   }
 }

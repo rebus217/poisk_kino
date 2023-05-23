@@ -14,7 +14,7 @@ class _FilmDetailsScreenState extends State<FilmDetailsScreen> {
       appBar: AppBar(
         title: const Text("Film Details"),
       ),
-      body: Placeholder(),
+      body: const Placeholder(),
     );
   }
 }
