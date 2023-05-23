@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:poisk_kino/shared/shared.dart';
 
-class LoginFormWidget extends StatelessWidget {
+class LoginFormWidget extends StatefulWidget {
   const LoginFormWidget({
     super.key,
   });
+
+  @override
+  State<LoginFormWidget> createState() => _LoginFormWidgetState();
+}
+
+class _LoginFormWidgetState extends State<LoginFormWidget> {
+  var loginController = TextEditingController();
+  var passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +21,18 @@ class LoginFormWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const TextInputWidget(name: "Login"),
-          const TextInputWidget(
+          TextInputWidget(
+            name: "Login",
+            controller: loginController,
+          ),
+          TextInputWidget(
             name: "Password",
             obscureText: true,
+            controller: passwordController,
           ),
           ElevatedButton(
               onPressed: () {
-                debugPrint("Login");
+                Navigator.of(context).pushNamed("/films_list");
               },
               child: const Text("Login")),
           const SizedBox(

@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:poisk_kino/shared/widgets/text_input_widget.dart';
 
-class RegisterFormWidget extends StatelessWidget {
+class RegisterFormWidget extends StatefulWidget {
   const RegisterFormWidget({super.key});
+
+  @override
+  State<RegisterFormWidget> createState() => _RegisterFormWidgetState();
+}
+
+class _RegisterFormWidgetState extends State<RegisterFormWidget> {
+  final nameController = TextEditingController();
+  final passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -11,23 +21,56 @@ class RegisterFormWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const TextInputWidget(name: "Name"),
-          const TextInputWidget(name: "Email"),
-          const TextInputWidget(
+          TextInputWidget(
+            name: "Name",
+            controller: nameController,
+          ),
+          TextInputWidget(
+            name: "Email",
+            controller: emailController,
+          ),
+          TextInputWidget(
             name: "Password",
             obscureText: true,
+            controller: passwordController,
           ),
-          const TextInputWidget(
+          TextInputWidget(
             name: "Confirm Password",
             obscureText: true,
+            controller: confirmPasswordController,
           ),
           ElevatedButton(
               onPressed: () {
-                debugPrint("Register");
+                _fetchRegistration();
               },
               child: const Text("Register")),
         ],
       ),
     );
+  }
+
+  void _fetchRegistration() {
+    String name = nameController.text.trim();
+    String password = passwordController.text.trim();
+    String email = emailController.text.trim();
+    String confirmPass = confirmPasswordController.text.trim();
+    
+    if (name.isEmpty ||
+        email.isEmpty ||
+        password.isEmpty ||
+        confirmPass.isEmpty) {
+      //TODO: show error
+      return;
+    }
+    if (password.length < 6) {
+      //TODO: show error
+      return;
+    }
+    if (password != confirmPass) {
+      //TODO: show error
+      return;
+    }
+    //TODO: request to firebase auth
+    return;
   }
 }

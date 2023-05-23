@@ -13,6 +13,18 @@ class _FilmsListScreenState extends State<FilmsListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Film List"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed("/search_film");
+              },
+              icon: Icon(Icons.search)),
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed("/film_collection");
+              },
+              icon: Icon(Icons.bookmark_border_outlined))
+        ],
       ),
       body: Placeholder(),
     );

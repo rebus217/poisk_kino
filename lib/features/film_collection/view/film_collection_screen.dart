@@ -12,7 +12,7 @@ class _FilmCollectionScreenState extends State<FilmCollectionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login Please"),
+        title: const Text("Collection"),
       ),
       body: Placeholder(),
     );
