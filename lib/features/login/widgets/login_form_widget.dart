@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:poisk_kino/features/login/bloc/login_bloc.dart';
 import 'package:poisk_kino/shared/shared.dart';
 
 class LoginFormWidget extends StatefulWidget {
   const LoginFormWidget({
     super.key,
+    required this.loginBloc,
   });
+
+  final LoginBloc loginBloc;
 
   @override
   State<LoginFormWidget> createState() => _LoginFormWidgetState();
@@ -31,10 +36,11 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
             controller: passwordController,
           ),
           ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed("/films_list");
-              },
-              child: const Text("Login")),
+            onPressed: () {
+              _fetchLogin();
+            },
+            child: const Text("Login"),
+          ),
           const SizedBox(
             height: 10,
           ),
@@ -42,10 +48,11 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
             children: [
               const Text("Not Registered Yet?"),
               TextButton(
-                  onPressed: () {
-                    _fetchLogin();
-                  },
-                  child: const Text("Register Now"))
+                onPressed: () {
+                  Navigator.of(context).pushNamed("/sing_up");
+                },
+                child: const Text("Register Now"),
+              )
             ],
           )
         ],
@@ -53,15 +60,14 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
     );
   }
 
-  void _fetchLogin() {
-    // debugPrint("Register");
-    // Navigator.of(context).pushNamed("/sing_up");
-    String login = loginController.text.trim();
+  void _fetchLogin() async {
+    String email = loginController.text.trim();
     String password = passwordController.text.trim();
 
-    if (login.isEmpty || password.isEmpty) {
-      //TODO: show error
+    if (email.isEmpty || password.isEmpty) {
+      Fluttertoast.showToast(msg: "Please fill all fields");
       return;
     }
+    widget.loginBloc.add(FirebaseLogin(email: email, password: password));
   }
 }

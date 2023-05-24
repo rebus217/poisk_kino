@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class FilmsListScreen extends StatefulWidget {
@@ -20,10 +21,18 @@ class _FilmsListScreenState extends State<FilmsListScreen> {
               },
               icon: const Icon(Icons.search)),
           IconButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed("/film_collection");
-              },
-              icon: const Icon(Icons.bookmark_border_outlined))
+            onPressed: () {
+              Navigator.of(context).pushNamed("/film_collection");
+            },
+            icon: const Icon(Icons.bookmark_border_outlined),
+          ),
+          IconButton(
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+              Navigator.of(context).pushReplacementNamed("/");
+            },
+            icon: const Icon(Icons.logout),
+          )
         ],
       ),
       body: const Placeholder(),

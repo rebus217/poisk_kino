@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LandingScreen extends StatefulWidget {
@@ -9,25 +10,18 @@ class LandingScreen extends StatefulWidget {
 
 class _LandingScreenState extends State<LandingScreen> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(""),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            const FlutterLogo(
-              size: 100,
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushReplacementNamed("/login");
-                },
-                child: const Text("Enter"))
-          ],
-        ),
-      ),
+      // body: const Center(child: CircularProgressIndicator()),
+      body: const Center(child: CircularProgressIndicator()),
     );
   }
 }
