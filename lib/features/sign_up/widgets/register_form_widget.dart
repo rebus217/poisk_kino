@@ -1,11 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get_it/get_it.dart';
-import 'package:ndialog/ndialog.dart';
 import 'package:poisk_kino/features/sign_up/bloc/sign_up_bloc.dart';
 import 'package:poisk_kino/shared/widgets/text_input_widget.dart';
-import 'package:talker_flutter/talker_flutter.dart';
 
 class RegisterFormWidget extends StatefulWidget {
   const RegisterFormWidget({super.key, required this.signUpBloc});
@@ -79,42 +75,5 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
       return;
     }
     widget.signUpBloc.add(SignUpFirebase(email: email, password: password));
-    // ProgressDialog progressDialog = ProgressDialog(
-    //   context,
-    //   title: const Text("Signing Up"),
-    //   message: const Text("Please wait"),
-    // );
-    // try {
-    //   progressDialog.show();
-
-    //   UserCredential userCredential =
-    //       await GetIt.I<FirebaseAuth>().createUserWithEmailAndPassword(
-    //     email: email,
-    //     password: password,
-    //   );
-
-    //   if (userCredential.user != null) {
-    //     //TODO: store user information in Realtime database
-
-    //     Navigator.of(context).pop();
-    //   } else {
-    //     Fluttertoast.showToast(msg: "Failed");
-    //   }
-
-    //   progressDialog.dismiss();
-    // } on FirebaseAuthException catch (e) {
-    //   if (e.code == "email-already-in-use") {
-    //     Fluttertoast.showToast(msg: "Email is already in Use");
-    //   }
-    //   if (e.code == "weak-password") {
-    //     Fluttertoast.showToast(msg: "Password is weak");
-    //   }
-    //   GetIt.I<Talker>().error("Unhandled firebase error ${e.code}");
-    //   progressDialog.dismiss();
-    // } catch (e, st) {
-    //   GetIt.I<Talker>().handle(e, st);
-    //   Fluttertoast.showToast(msg: "Something went wrong");
-    //   progressDialog.dismiss();
-    // }
   }
 }
