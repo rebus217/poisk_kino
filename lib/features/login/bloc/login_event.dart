@@ -4,8 +4,8 @@ abstract class LoginEvent {
   LoginEvent();
 }
 
-class FirebaseLogin extends LoginEvent {
-  FirebaseLogin({required this.email, required this.password});
+class LoginFirebase extends LoginEvent {
+  LoginFirebase({required this.email, required this.password});
 
   final String email;
   final String password;

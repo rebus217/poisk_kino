@@ -68,6 +68,6 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
       Fluttertoast.showToast(msg: "Please fill all fields");
       return;
     }
-    widget.loginBloc.add(FirebaseLogin(email: email, password: password));
+    widget.loginBloc.add(LoginFirebase(email: email, password: password));
   }
 }

@@ -39,7 +39,7 @@ class FirebaseAuthRepository extends AbstractAuthRepository {
   }
 
   @override
-  void register(String email, String password) async {
+  void signup(String email, String password) async {
     try {
       await firebaseAuth.createUserWithEmailAndPassword(
         email: email,

@@ -7,7 +7,7 @@ part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc(this.authRepository) : super(LoginInitial()) {
-    on<FirebaseLogin>((event, emit) async {
+    on<LoginFirebase>((event, emit) async {
       try {
         emit(LoginRequest());
         await authRepository.login(event.email, event.password);
