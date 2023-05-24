@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:poisk_kino/features/film_collection/film_collection.dart';
 import 'package:poisk_kino/features/film_detail/film_detail.dart';
 import 'package:poisk_kino/features/films_list/films_list.dart';
-import 'package:poisk_kino/features/landing/landing.dart';
 import 'package:poisk_kino/features/login/login.dart';
 import 'package:poisk_kino/features/search_film/search_film.dart';
 import 'package:poisk_kino/features/sing_up/sing_up.dart';

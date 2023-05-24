@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_it/get_it.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:poisk_kino/features/login/bloc/login_bloc.dart';
-
 import 'package:poisk_kino/features/login/login.dart';
 import 'package:poisk_kino/repositories/auth/abstract_auth_repository.dart';
-import 'package:talker_flutter/talker_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -19,7 +16,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _loginBloc = LoginBloc(GetIt.I<AbstractAuthRepository>());
-  final _talker = GetIt.I<Talker>();
 
   @override
   void initState() {
