@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:poisk_kino/features/film_collection/film_collection.dart';
 import 'package:poisk_kino/features/film_detail/film_detail.dart';
@@ -8,7 +9,9 @@ import 'package:poisk_kino/features/search_film/search_film.dart';
 import 'package:poisk_kino/features/sing_up/sing_up.dart';
 
 final Map<String, StatefulWidget Function(BuildContext context)> routes = {
-  "/": (BuildContext context) => const LandingScreen(),
+  "/": (BuildContext context) => FirebaseAuth.instance.currentUser == null
+      ? const LoginScreen()
+      : const FilmsListScreen(),
   "/login": (BuildContext context) => const LoginScreen(),
   "/sing_up": (BuildContext context) => const SingUpScreen(),
   "/film_collection": (BuildContext context) => const FilmCollectionScreen(),
