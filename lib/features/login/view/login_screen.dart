@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
             if (state is LoginRequestFirebaseException) {
               progressDialog.dismiss();
               if (state.exception.code == "user-not-found") {
-                Fluttertoast.showToast(msg: "User not foun");
+                Fluttertoast.showToast(msg: "User not found");
                 return;
               }
               if (state.exception.code == "wrong-password") {
