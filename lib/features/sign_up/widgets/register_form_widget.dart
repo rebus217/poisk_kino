@@ -74,6 +74,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
       Fluttertoast.showToast(msg: "Passwords do not match");
       return;
     }
-    widget.signUpBloc.add(SignUpFirebase(email: email, password: password));
+    widget.signUpBloc
+        .add(SignUpFirebase(email: email, password: password, fullName: name));
   }
 }

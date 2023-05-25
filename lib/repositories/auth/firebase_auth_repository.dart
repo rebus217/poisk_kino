@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_it/get_it.dart';
 import 'package:poisk_kino/repositories/auth/abstract_auth_repository.dart';
@@ -39,12 +40,28 @@ class FirebaseAuthRepository extends AbstractAuthRepository {
   }
 
   @override
-  void signup(String email, String password) async {
+  void signup(String email, String password, String fullName) async {
     try {
-      await firebaseAuth.createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+
+      if (userCredential.user != null) {
+        DatabaseReference userRef =
+            FirebaseDatabase.instance.ref().child("users");
+
+        String uid = userCredential.user!.uid;
+        int dt = DateTime.now().millisecondsSinceEpoch;
+        await userRef.child(uid).set({
+          "email": email,
+          "fullName": fullName,
+          "dt": dt,
+          "uid": uid,
+          "avatar":"",
+        });
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == "email-already-in-use") {
         Fluttertoast.showToast(msg: "Email is already in Use");

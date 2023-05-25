@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poisk_kino/repositories/auth/auth.dart';
 
@@ -10,7 +11,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     on<SignUpFirebase>((event, emit) async {
       try {
         emit(SignUpRequest());
-        await authRepository.signup(event.email, event.password);
+        await authRepository.signup(event.email, event.password, event.fullName);
         emit(SignUpResponse());
       } on FirebaseAuthException catch (e) {
         emit(SignUpResponseFirebaseException(exception: e));
