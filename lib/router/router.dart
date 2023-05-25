@@ -7,6 +7,7 @@ import 'package:poisk_kino/features/films_list/films_list.dart';
 import 'package:poisk_kino/features/login/login.dart';
 import 'package:poisk_kino/features/search_film/search_film.dart';
 import 'package:poisk_kino/features/sign_up/sing_up.dart';
+import 'package:poisk_kino/repositories/films_list/models/film_model.dart';
 
 // final Map<String, StatefulWidget Function(BuildContext context)> routes = {
 //   "/": (BuildContext context) => FirebaseAuth.instance.currentUser == null
@@ -45,12 +46,12 @@ final router = GoRouter(routes: [
   ),
   GoRoute(
     path: "/film",
+    name: "film",
     builder: (context, state) {
-      final String filmName = state.queryParameters["filmName"] as String;
-      final String filmId = state.queryParameters["filmId"] as String;
+      Film film = state.extra as Film;
+
       return FilmDetailsScreen(
-        filmId: int.parse(filmId),
-        filmName: filmName,
+        film: film,
       );
     },
   ),

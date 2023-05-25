@@ -4,12 +4,16 @@ import 'package:get_it/get_it.dart';
 import 'package:poisk_kino/features/film_detail/bloc/film_detail_bloc.dart';
 import 'package:poisk_kino/features/film_detail/widgets/widgets.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
+import 'package:poisk_kino/repositories/films_list/models/film_model.dart';
 
 class FilmDetailsScreen extends StatefulWidget {
-  const FilmDetailsScreen(
-      {super.key, required this.filmName, required this.filmId});
-  final String filmName;
-  final int filmId;
+  // const FilmDetailsScreen(
+  //     {super.key, required this.filmName, required this.filmId});
+  // final String filmName;
+  // final int filmId;
+  const FilmDetailsScreen({super.key, required this.film});
+
+  final Film film;
 
   @override
   State<FilmDetailsScreen> createState() => _FilmDetailsScreenState();
@@ -21,7 +25,7 @@ class _FilmDetailsScreenState extends State<FilmDetailsScreen> {
 
   @override
   void initState() {
-    _filmDetailBloc.add(FilmDetailLoad(filmId: widget.filmId));
+    _filmDetailBloc.add(FilmDetailLoad(filmId: widget.film.filmId));
     super.initState();
   }
 
@@ -29,7 +33,7 @@ class _FilmDetailsScreenState extends State<FilmDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.filmName),
+        title: Text(widget.film.nameRu),
       ),
       body: BlocBuilder<FilmDetailBloc, FilmDetailState>(
         bloc: _filmDetailBloc,
@@ -60,7 +64,11 @@ class _FilmDetailsScreenState extends State<FilmDetailsScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton.small(
-        onPressed: () {},
+        onPressed: () {
+          // final AbstractFilmsListRepository _filmsListRepository = GetIt.I<AbstractFilmsListRepository>()
+          GetIt.I<AbstractFilmsListRepository>()
+              .saveToMyCollection(widget.film);
+        },
         child: const Icon(Icons.bookmark_add),
       ),
     );

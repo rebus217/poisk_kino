@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:get_it/get_it.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
 import 'package:poisk_kino/repositories/films_list/models/models.dart';
@@ -42,8 +44,17 @@ class KinopoiskFilmListRepository extends AbstractFilmsListRepository {
   }
 
   @override
-  void saveToMyCollection() {
-    // TODO: implement saveToMyCollection
+  void saveToMyCollection(Film film) async {
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      String uid = user.uid;
+
+      DatabaseReference filmRef =
+          FirebaseDatabase.instance.ref("filmCollection").child(uid);
+
+      await filmRef.child(film.filmId.toString()).set(film.toJson());
+    }
   }
 
   @override
