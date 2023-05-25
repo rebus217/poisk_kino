@@ -8,11 +8,13 @@ class Film {
     required this.nameRu,
     required this.year,
     required this.posterUrlPreview,
+    required this.filmId,
   });
 
   final String nameRu;
   final String year;
   final String posterUrlPreview;
+  final String filmId;
 
   factory Film.fromJson(Map<String, dynamic> json) => _$FilmFromJson(json);
 

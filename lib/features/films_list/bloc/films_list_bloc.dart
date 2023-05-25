@@ -11,8 +11,7 @@ class FilmsListBloc extends Bloc<FilmsListEvent, FilmsListState> {
       try {
         emit(FilmsListRequst());
         List<Film> response = await filmsListRepository.getTopTen();
-        print(response);
-        emit(FilmsListResponse());
+        emit(FilmsListResponse(filmList: response));
       } catch (e) {
         emit(FilmsListRequstFail());
       }

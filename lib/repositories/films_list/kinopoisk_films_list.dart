@@ -30,10 +30,7 @@ class KinopoiskFilmListRepository extends AbstractFilmsListRepository {
       final Response<dynamic> response = await dio.get("/films/top",
           queryParameters: {"type": "TOP_100_POPULAR_FILMS", "page": 1});
       final List films = response.data["films"];
-      filmList = films.map((film) {
-        final Film data = Film.fromJson(film);
-        return data;
-      }).toList();
+      filmList = films.map((film) => Film.fromJson(film)).toList();
     } catch (e, st) {
       GetIt.I<Talker>().handle(e, st);
     }
