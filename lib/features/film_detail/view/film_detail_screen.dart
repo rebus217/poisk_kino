@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:poisk_kino/features/film_detail/bloc/film_detail_bloc.dart';
+import 'package:poisk_kino/features/film_detail/widgets/widgets.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
 
 class FilmDetailsScreen extends StatefulWidget {
@@ -34,14 +35,33 @@ class _FilmDetailsScreenState extends State<FilmDetailsScreen> {
         bloc: _filmDetailBloc,
         builder: (context, state) {
           if (state is FilmDetailResponse) {
-            return Column(
-              children: [
-                Image.network(state.filmDetail.posterUrl as String),
-              ],
+            return SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Column(
+                children: [
+                  const SizedBox(height: 10),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FilmPosterWidget(
+                        url: state.filmDetail.posterUrl as String,
+                      ),
+                      const SizedBox(width: 10),
+                      FilmInfoWidget(filmDetail: state.filmDetail)
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  FilmDescription(description: state.filmDetail.description),
+                ],
+              ),
             );
           }
           return const Center(child: CircularProgressIndicator());
         },
+      ),
+      floatingActionButton: FloatingActionButton.small(
+        onPressed: () {},
+        child: const Icon(Icons.bookmark_add),
       ),
     );
   }

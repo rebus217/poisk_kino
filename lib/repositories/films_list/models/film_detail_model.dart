@@ -5,25 +5,29 @@ part 'film_detail_model.g.dart';
 @JsonSerializable()
 class FilmDetail {
   FilmDetail({
-    this.nameRu,
     required this.nameOriginal,
-    required this.posterUrl,
-    required this.posterUrlPreview,
-    required this.coverUrl,
-    required this.ratingKinopoisk,
-    required this.ratingImdb,
-    required this.year,
     required this.countries,
     required this.genres,
+    this.nameRu,
+    this.posterUrl,
+    this.posterUrlPreview,
+    this.coverUrl,
+    this.ratingKinopoisk,
+    this.ratingImdb,
+    this.year,
+    this.description,
+    this.slogan,
   });
 
-  final String? nameRu;
   final String nameOriginal;
+  final String? nameRu;
   final String? posterUrl;
   final String? posterUrlPreview;
   final String? coverUrl;
   final double? ratingKinopoisk;
   final double? ratingImdb;
+  final String? description;
+  final String? slogan;
   final int? year;
   @JsonKey(
     toJson: _countryToJson,
@@ -32,7 +36,7 @@ class FilmDetail {
   final String countries;
 
   @JsonKey(
-    toJson: _generesToJson,
+    toJson: _genresToJson,
     fromJson: _generesFromJson,
   )
   final String genres;
@@ -51,7 +55,7 @@ class FilmDetail {
     return countryNameList.join(", ");
   }
 
-  static _generesToJson(String gener) {}
+  static _genresToJson(String gener) {}
   static String _generesFromJson(List<dynamic> generList) {
     final List generNameList = generList.map((genere) {
       final String generName = genere["genre"];

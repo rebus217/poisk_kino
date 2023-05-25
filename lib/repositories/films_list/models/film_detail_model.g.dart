@@ -7,28 +7,32 @@ part of 'film_detail_model.dart';
 // **************************************************************************
 
 FilmDetail _$FilmDetailFromJson(Map<String, dynamic> json) => FilmDetail(
-      nameRu: json['nameRu'] as String?,
       nameOriginal: json['nameOriginal'] as String,
+      countries: FilmDetail._countryFromJson(json['countries'] as List),
+      genres: FilmDetail._generesFromJson(json['genres'] as List),
+      nameRu: json['nameRu'] as String?,
       posterUrl: json['posterUrl'] as String?,
       posterUrlPreview: json['posterUrlPreview'] as String?,
       coverUrl: json['coverUrl'] as String?,
       ratingKinopoisk: (json['ratingKinopoisk'] as num?)?.toDouble(),
       ratingImdb: (json['ratingImdb'] as num?)?.toDouble(),
       year: json['year'] as int?,
-      countries: FilmDetail._countryFromJson(json['countries'] as List),
-      genres: FilmDetail._generesFromJson(json['genres'] as List),
+      description: json['description'] as String?,
+      slogan: json['slogan'] as String?,
     );
 
 Map<String, dynamic> _$FilmDetailToJson(FilmDetail instance) =>
     <String, dynamic>{
-      'nameRu': instance.nameRu,
       'nameOriginal': instance.nameOriginal,
+      'nameRu': instance.nameRu,
       'posterUrl': instance.posterUrl,
       'posterUrlPreview': instance.posterUrlPreview,
       'coverUrl': instance.coverUrl,
       'ratingKinopoisk': instance.ratingKinopoisk,
       'ratingImdb': instance.ratingImdb,
+      'description': instance.description,
+      'slogan': instance.slogan,
       'year': instance.year,
       'countries': FilmDetail._countryToJson(instance.countries),
-      'genres': FilmDetail._generesToJson(instance.genres),
+      'genres': FilmDetail._genresToJson(instance.genres),
     };
