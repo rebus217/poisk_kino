@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:poisk_kino/features/login/bloc/login_bloc.dart';
 import 'package:poisk_kino/features/login/login.dart';
@@ -42,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
             }
             if (state is LoginResponse) {
               progressDialog.dismiss();
-              Navigator.of(context).pushReplacementNamed("/films_list");
+              context.go("/films_list");
               return;
             }
             if (state is LoginRequestException) {

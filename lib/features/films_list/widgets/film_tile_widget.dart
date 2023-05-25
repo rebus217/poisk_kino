@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:poisk_kino/repositories/films_list/models/film_model.dart';
 
 class FilmTile extends StatelessWidget {
@@ -13,8 +14,8 @@ class FilmTile extends StatelessWidget {
       title: Text(film.nameRu),
       subtitle: Text(film.year),
       trailing: const Icon(Icons.arrow_forward),
-      onTap: () => Navigator.of(context).pushNamed("/film",
-          arguments: {"filmId": film.filmId, "filmName": film.nameRu}),
+      onTap: () =>
+          context.push("/film?filmId=${film.filmId}&filmName=${film.nameRu}"),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 import 'package:poisk_kino/features/films_list/bloc/films_list_bloc.dart';
 import 'package:poisk_kino/features/films_list/widgets/film_tile_widget.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
@@ -31,19 +32,19 @@ class _FilmsListScreenState extends State<FilmsListScreen> {
           actions: [
             IconButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed("/search_film");
+                  context.push("/search_film");
                 },
                 icon: const Icon(Icons.search)),
             IconButton(
               onPressed: () {
-                Navigator.of(context).pushNamed("/film_collection");
+                context.push("/film_collection");
               },
               icon: const Icon(Icons.bookmark_border_outlined),
             ),
             IconButton(
               onPressed: () {
                 FirebaseAuth.instance.signOut();
-                Navigator.of(context).pushReplacementNamed("/");
+                context.go("/");
               },
               icon: const Icon(Icons.logout),
             )

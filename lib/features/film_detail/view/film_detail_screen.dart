@@ -5,39 +5,30 @@ import 'package:poisk_kino/features/film_detail/bloc/film_detail_bloc.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
 
 class FilmDetailsScreen extends StatefulWidget {
-  const FilmDetailsScreen({super.key});
+  const FilmDetailsScreen(
+      {super.key, required this.filmName, required this.filmId});
+  final String filmName;
+  final int filmId;
 
   @override
   State<FilmDetailsScreen> createState() => _FilmDetailsScreenState();
 }
 
 class _FilmDetailsScreenState extends State<FilmDetailsScreen> {
-  final String filmName = "";
   final FilmDetailBloc _filmDetailBloc =
       FilmDetailBloc(GetIt.I<AbstractFilmsListRepository>());
 
   @override
   void initState() {
+    _filmDetailBloc.add(FilmDetailLoad(filmId: widget.filmId));
     super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    final Object? arg = ModalRoute.of(context)?.settings.arguments;
-    assert(arg != null , "you must provide filmId arg");
-
-    if (arg is int) {
-      _filmDetailBloc.add(FilmDetailLoad(filmId: arg));
-    }
-
-    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Film Details"),
+        title: Text(widget.filmName),
       ),
       body: BlocBuilder<FilmDetailBloc, FilmDetailState>(
         bloc: _filmDetailBloc,

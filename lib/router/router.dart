@@ -8,17 +8,17 @@ import 'package:poisk_kino/features/login/login.dart';
 import 'package:poisk_kino/features/search_film/search_film.dart';
 import 'package:poisk_kino/features/sign_up/sing_up.dart';
 
-final Map<String, StatefulWidget Function(BuildContext context)> routes = {
-  "/": (BuildContext context) => FirebaseAuth.instance.currentUser == null
-      ? const LoginScreen()
-      : const FilmsListScreen(),
-  "/login": (BuildContext context) => const LoginScreen(),
-  "/sing_up": (BuildContext context) => const SignUpScreen(),
-  "/film_collection": (BuildContext context) => const FilmCollectionScreen(),
-  "/film": (BuildContext context) => const FilmDetailsScreen(),
-  "/films_list": (BuildContext context) => const FilmsListScreen(),
-  "/search_film": (BuildContext context) => const SearchFilmScreen(),
-};
+// final Map<String, StatefulWidget Function(BuildContext context)> routes = {
+//   "/": (BuildContext context) => FirebaseAuth.instance.currentUser == null
+//       ? const LoginScreen()
+//       : const FilmsListScreen(),
+//   "/login": (BuildContext context) => const LoginScreen(),
+//   "/sing_up": (BuildContext context) => const SignUpScreen(),
+//   "/film_collection": (BuildContext context) => const FilmCollectionScreen(),
+//   "/film": (BuildContext context) => const FilmDetailsScreen(),
+//   "/films_list": (BuildContext context) => const FilmsListScreen(),
+//   "/search_film": (BuildContext context) => const SearchFilmScreen(),
+// };
 
 final router = GoRouter(routes: [
   GoRoute(
@@ -44,8 +44,15 @@ final router = GoRouter(routes: [
     builder: (context, state) => const FilmsListScreen(),
   ),
   GoRoute(
-    path: "/films_list/:filmId",
-    builder: (context, state) => const FilmDetailsScreen(),
+    path: "/film",
+    builder: (context, state) {
+      final String filmName = state.queryParameters["filmName"] as String;
+      final String filmId = state.queryParameters["filmId"] as String;
+      return FilmDetailsScreen(
+        filmId: int.parse(filmId),
+        filmName: filmName,
+      );
+    },
   ),
   GoRoute(
     path: "/search_film",

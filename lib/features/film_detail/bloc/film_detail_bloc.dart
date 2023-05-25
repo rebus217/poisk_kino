@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
 import 'package:poisk_kino/repositories/films_list/models/models.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 part 'film_detail_event.dart';
 part 'film_detail_state.dart';
@@ -13,7 +15,8 @@ class FilmDetailBloc extends Bloc<FilmDetailEvent, FilmDetailState> {
         final filmDetail =
             await filmsListRepository.getFilmDetail(filmId: event.filmId);
         emit(FilmDetailResponse(filmDetail: filmDetail));
-      } catch (e) {
+      } catch (e, st) {
+        GetIt.I<Talker>().handle(e, st);
         emit(FilmDetailRequestFail());
       }
     });

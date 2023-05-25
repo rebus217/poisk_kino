@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 import 'package:poisk_kino/features/login/bloc/login_bloc.dart';
 import 'package:poisk_kino/shared/shared.dart';
 
@@ -49,7 +50,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
               const Text("Not Registered Yet?"),
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed("/sing_up");
+                  context.push("/sing_up");
                 },
                 child: const Text("Register Now"),
               )
