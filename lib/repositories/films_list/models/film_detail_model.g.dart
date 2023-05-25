@@ -7,7 +7,7 @@ part of 'film_detail_model.dart';
 // **************************************************************************
 
 FilmDetail _$FilmDetailFromJson(Map<String, dynamic> json) => FilmDetail(
-      nameOriginal: json['nameOriginal'] as String,
+      nameOriginal: json['nameOriginal'] as String?,
       countries: FilmDetail._countryFromJson(json['countries'] as List),
       genres: FilmDetail._generesFromJson(json['genres'] as List),
       nameRu: json['nameRu'] as String?,

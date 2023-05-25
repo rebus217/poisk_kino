@@ -5,7 +5,7 @@ part 'film_detail_model.g.dart';
 @JsonSerializable()
 class FilmDetail {
   FilmDetail({
-    required this.nameOriginal,
+    this.nameOriginal,
     required this.countries,
     required this.genres,
     this.nameRu,
@@ -19,7 +19,7 @@ class FilmDetail {
     this.slogan,
   });
 
-  final String nameOriginal;
+  final String? nameOriginal;
   final String? nameRu;
   final String? posterUrl;
   final String? posterUrlPreview;

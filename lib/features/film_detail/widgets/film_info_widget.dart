@@ -15,7 +15,7 @@ class FilmInfoWidget extends StatelessWidget {
           Text(
             "${filmDetail.nameRu ?? "-"} (${filmDetail.year ?? "-"})",
           ),
-          Text(filmDetail.nameOriginal),
+          Text(filmDetail.nameOriginal ?? "-"),
           const SizedBox(height: 30),
           Text(
             "Country:  ${filmDetail.countries}",
