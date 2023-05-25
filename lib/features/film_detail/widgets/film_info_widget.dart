@@ -11,7 +11,7 @@ class FilmInfoWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          //TODO: make text bigger and bold
+          //TODO: Craete TextTheme
           Text(
             "${filmDetail.nameRu ?? "-"} (${filmDetail.year ?? "-"})",
           ),
