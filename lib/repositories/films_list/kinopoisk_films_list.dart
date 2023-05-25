@@ -14,8 +14,10 @@ class KinopoiskFilmListRepository extends AbstractFilmsListRepository {
   }
 
   @override
-  void getFilmDetail() {
-    // TODO: implement getFilmDetail
+  Future<FilmDetail> getFilmDetail({required int filmId}) async {
+    final Response response = await dio.get("/films/$filmId");
+    final Map<String, dynamic> data = response.data;
+    return FilmDetail.fromJson(data);
   }
 
   @override

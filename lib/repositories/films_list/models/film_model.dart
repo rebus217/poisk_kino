@@ -14,7 +14,7 @@ class Film {
   final String nameRu;
   final String year;
   final String posterUrlPreview;
-  final String filmId;
+  final int filmId;
 
   factory Film.fromJson(Map<String, dynamic> json) => _$FilmFromJson(json);
 
