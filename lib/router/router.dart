@@ -8,18 +8,6 @@ import 'package:poisk_kino/features/search_film/search_film.dart';
 import 'package:poisk_kino/features/sign_up/sing_up.dart';
 import 'package:poisk_kino/repositories/films_list/models/film_model.dart';
 
-// final Map<String, StatefulWidget Function(BuildContext context)> routes = {
-//   "/": (BuildContext context) => FirebaseAuth.instance.currentUser == null
-//       ? const LoginScreen()
-//       : const FilmsListScreen(),
-//   "/login": (BuildContext context) => const LoginScreen(),
-//   "/sing_up": (BuildContext context) => const SignUpScreen(),
-//   "/film_collection": (BuildContext context) => const FilmCollectionScreen(),
-//   "/film": (BuildContext context) => const FilmDetailsScreen(),
-//   "/films_list": (BuildContext context) => const FilmsListScreen(),
-//   "/search_film": (BuildContext context) => const SearchFilmScreen(),
-// };
-
 final router = GoRouter(routes: [
   GoRoute(
     path: "/",

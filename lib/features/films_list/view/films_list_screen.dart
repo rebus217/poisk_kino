@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:poisk_kino/features/films_list/bloc/films_list_bloc.dart';
 import 'package:poisk_kino/features/films_list/widgets/film_tile_widget.dart';
+import 'package:poisk_kino/features/films_list/widgets/widgets.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
 import 'package:poisk_kino/repositories/films_list/models/film_model.dart';
 
@@ -65,7 +66,9 @@ class _FilmsListScreenState extends State<FilmsListScreen> {
                 },
               );
             }
-            return const Center(child: CircularProgressIndicator());
+            return Center(
+              child: CircularProgressIndicator(),
+            );
           },
         ));
   }

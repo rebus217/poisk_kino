@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:poisk_kino/repositories/films_list/models/models.dart';
 
 abstract class AbstractFilmsListRepository {
@@ -5,6 +6,6 @@ abstract class AbstractFilmsListRepository {
   Future<FilmDetail> getFilmDetail({required int filmId});
   Future<void> saveToMyCollection(Film film);
   void deleteFromMyCollection();
-  void getMyCollection();
+  List<Film> getMyCollection(DatabaseEvent event);
   void searchFilm();
 }
