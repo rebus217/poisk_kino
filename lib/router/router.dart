@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:poisk_kino/features/film_collection/film_collection.dart';
 import 'package:poisk_kino/features/film_detail/film_detail.dart';
