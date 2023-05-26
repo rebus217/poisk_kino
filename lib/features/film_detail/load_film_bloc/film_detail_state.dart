@@ -12,3 +12,9 @@ class FilmDetailResponse extends FilmDetailState {
   FilmDetailResponse({required this.filmDetail});
   final FilmDetail filmDetail;
 }
+
+class FilmSaveReq extends FilmDetailState {}
+
+class FilmSaveReqFail extends FilmDetailState {}
+
+class FilmSaveRes extends FilmDetailState {}

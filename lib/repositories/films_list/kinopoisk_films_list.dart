@@ -44,7 +44,7 @@ class KinopoiskFilmListRepository extends AbstractFilmsListRepository {
   }
 
   @override
-  void saveToMyCollection(Film film) async {
+  Future<void> saveToMyCollection(Film film) async {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {

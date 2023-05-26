@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:poisk_kino/features/film_detail/bloc/film_detail_bloc.dart';
+import 'package:poisk_kino/features/film_detail/collection_film_bloc/collection_film_bloc.dart';
+import 'package:poisk_kino/features/film_detail/load_film_bloc/film_detail_bloc.dart';
+
 import 'package:poisk_kino/features/film_detail/widgets/widgets.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
 import 'package:poisk_kino/repositories/films_list/models/film_model.dart';
 
 class FilmDetailsScreen extends StatefulWidget {
-  // const FilmDetailsScreen(
-  //     {super.key, required this.filmName, required this.filmId});
-  // final String filmName;
-  // final int filmId;
   const FilmDetailsScreen({super.key, required this.film});
 
   final Film film;
@@ -22,6 +20,11 @@ class FilmDetailsScreen extends StatefulWidget {
 class _FilmDetailsScreenState extends State<FilmDetailsScreen> {
   final FilmDetailBloc _filmDetailBloc =
       FilmDetailBloc(GetIt.I<AbstractFilmsListRepository>());
+
+  final CollectionFilmBloc _saveFilmBloc =
+      CollectionFilmBloc(GetIt.I<AbstractFilmsListRepository>());
+
+  bool isSaved = false;
 
   @override
   void initState() {
@@ -65,11 +68,25 @@ class _FilmDetailsScreenState extends State<FilmDetailsScreen> {
       ),
       floatingActionButton: FloatingActionButton.small(
         onPressed: () {
-          // final AbstractFilmsListRepository _filmsListRepository = GetIt.I<AbstractFilmsListRepository>()
-          GetIt.I<AbstractFilmsListRepository>()
-              .saveToMyCollection(widget.film);
+          if (isSaved) {
+            _saveFilmBloc.add(RemoveFilm(film: widget.film));
+          }
+          if (!isSaved) {
+            _saveFilmBloc.add(SaveFilm(film: widget.film));
+          }
         },
-        child: const Icon(Icons.bookmark_add),
+        child: BlocBuilder<CollectionFilmBloc, CollectionFilmState>(
+          bloc: _saveFilmBloc,
+          builder: (context, state) {
+            if (state is SaveFilmRes) {
+              isSaved = true;
+            }
+            if (state is SaveFilmReq) {
+              return const CircularProgressIndicator.adaptive();
+            }
+            return Icon(isSaved ? Icons.bookmark_added : Icons.bookmark_add);
+          },
+        ),
       ),
     );
   }
