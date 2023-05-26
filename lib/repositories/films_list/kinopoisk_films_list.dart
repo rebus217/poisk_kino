@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -12,10 +10,7 @@ class KinopoiskFilmListRepository extends AbstractFilmsListRepository {
   KinopoiskFilmListRepository({required this.dio});
   final Dio dio;
 
-  @override
-  void deleteFromMyCollection() {
-    // TODO: implement deleteFromMyCollection
-  }
+  User? user = FirebaseAuth.instance.currentUser;
 
   @override
   Future<FilmDetail> getFilmDetail({required int filmId}) async {
@@ -26,21 +21,8 @@ class KinopoiskFilmListRepository extends AbstractFilmsListRepository {
   }
 
   @override
-  List<Film> getMyCollection(DatabaseEvent event) {
-    List<Film> filmList = <Film>[];
-    if (event.snapshot.value != null) {
-      final Map<Object?, Object?> data =
-          event.snapshot.value as Map<Object?, Object?>;
-
-      Map<String, dynamic> map = Map<String, dynamic>.from(data);
-
-      filmList = map.entries.map((e) {
-        final value = Map<String, dynamic>.from(e.value);
-        return Film.fromJson(value);
-      }).toList();
-    }
-
-    return filmList;
+  void searchFilm() {
+    // TODO: implement searchFilm
   }
 
   @override
@@ -59,20 +41,48 @@ class KinopoiskFilmListRepository extends AbstractFilmsListRepository {
   }
 
   @override
-  Future<void> saveToMyCollection(Film film) async {
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      String uid = user.uid;
+  Future<List<Film>> getCollection() async {
+    final ref = FirebaseDatabase.instance.ref("filmCollection/${user!.uid}");
+    final snapshot = await ref.get();
+    List<Film> filmList = <Film>[];
+    if (snapshot.value != null) {
+      final Map<Object?, Object?> data =
+          snapshot.value as Map<Object?, Object?>;
 
-      DatabaseReference filmRef =
-          FirebaseDatabase.instance.ref("filmCollection").child(uid);
+      Map<String, dynamic> map = Map<String, dynamic>.from(data);
 
-      await filmRef.child(film.filmId.toString()).set(film.toJson());
+      filmList = map.entries.map((e) {
+        final value = Map<String, dynamic>.from(e.value);
+        return Film.fromJson(value);
+      }).toList();
     }
+
+    return filmList;
   }
 
   @override
-  void searchFilm() {
-    // TODO: implement searchFilm
+  Future<void> saveToCollection(Film film) async {
+    final ref = FirebaseDatabase.instance.ref("filmCollection");
+    await ref.child("${user!.uid}/${film.filmId}").set(film.toJson());
+  }
+
+  @override
+  Future<bool> checkInCollection(int filmId) async {
+    final ref = FirebaseDatabase.instance.ref();
+
+    final snapshot = await ref
+        .child("filmCollection")
+        .child(user!.uid)
+        .child("$filmId")
+        .get();
+
+    return snapshot.exists;
+  }
+
+  @override
+  Future<void> deleteFromCollection(int filmId) async {
+    final ref = FirebaseDatabase.instance.ref("filmCollection");
+
+    await ref.child("${user!.uid}/$filmId").remove();
   }
 }

@@ -13,8 +13,29 @@ class CollectionFilmBloc
     on<SaveFilm>((event, emit) async {
       try {
         emit(SaveFilmReq());
-        await _filmsListRepository.saveToMyCollection(event.film);
-        emit(SaveFilmRes());
+        await _filmsListRepository.saveToCollection(event.film);
+        emit(SaveFilmRes(isSaved: true));
+      } catch (e, st) {
+        emit(SaveFilmReqFail());
+        GetIt.I<Talker>().handle(e, st);
+      }
+    });
+    on<CheckFilm>((event, emit) async {
+      try {
+        emit(SaveFilmReq());
+        final bool isSaved =
+            await _filmsListRepository.checkInCollection(event.filmId);
+        emit(SaveFilmRes(isSaved: isSaved));
+      } catch (e, st) {
+        emit(SaveFilmReqFail());
+        GetIt.I<Talker>().handle(e, st);
+      }
+    });
+    on<RemoveFilm>((event, emit) async {
+      try {
+        emit(SaveFilmReq());
+        await _filmsListRepository.deleteFromCollection(event.film.filmId);
+        emit(SaveFilmRes(isSaved: false));
       } catch (e, st) {
         emit(SaveFilmReqFail());
         GetIt.I<Talker>().handle(e, st);

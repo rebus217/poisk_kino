@@ -11,3 +11,9 @@ class RemoveFilm extends CollectionFilmEvent {
   RemoveFilm({required this.film});
   final Film film;
 }
+
+class CheckFilm extends CollectionFilmEvent {
+  CheckFilm({required this.filmId});
+
+  final int filmId;
+}

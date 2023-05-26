@@ -23,7 +23,7 @@ class FilmDetailBloc extends Bloc<FilmDetailEvent, FilmDetailState> {
     on<FilmSave>((event, emit) async {
       try {
         emit(FilmSaveReq());
-        await filmsListRepository.saveToMyCollection(event.film);
+        await filmsListRepository.saveToCollection(event.film);
         emit(FilmSaveRes());
       } catch (e, st) {
         emit(FilmSaveReqFail());

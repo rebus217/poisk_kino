@@ -1,5 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
@@ -15,13 +13,9 @@ class FilmCollectionBloc
       : super(FilmCollectionInitial()) {
     on<LoadFilmCollection>((event, emit) async {
       try {
-        User? user = FirebaseAuth.instance.currentUser;
-        DatabaseReference filmRef =
-            FirebaseDatabase.instance.ref("filmCollection/${user!.uid}");
-        await emit.forEach(filmRef.onValue, onData: (data) {
-          List<Film> filmList = _filmsListRepository.getMyCollection(data);
-          return FilmCollectionRes(filmList: filmList);
-        });
+        emit(FilmCollectionReq());
+        List<Film> filmList = await _filmsListRepository.getCollection();
+        emit(FilmCollectionRes(filmList: filmList));
       } catch (e, st) {
         GetIt.I<Talker>().handle(e, st);
         emit(FilmCollectionReqFail());

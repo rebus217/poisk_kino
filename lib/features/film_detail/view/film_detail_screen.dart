@@ -29,6 +29,7 @@ class _FilmDetailsScreenState extends State<FilmDetailsScreen> {
   @override
   void initState() {
     _filmDetailBloc.add(FilmDetailLoad(filmId: widget.film.filmId));
+    _saveFilmBloc.add(CheckFilm(filmId: widget.film.filmId));
     super.initState();
   }
 
@@ -79,7 +80,7 @@ class _FilmDetailsScreenState extends State<FilmDetailsScreen> {
           bloc: _saveFilmBloc,
           builder: (context, state) {
             if (state is SaveFilmRes) {
-              isSaved = true;
+              isSaved = state.isSaved;
             }
             if (state is SaveFilmReq) {
               return const CircularProgressIndicator.adaptive();

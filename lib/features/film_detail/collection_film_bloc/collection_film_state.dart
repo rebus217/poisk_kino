@@ -8,4 +8,8 @@ class SaveFilmReq extends CollectionFilmState {}
 
 class SaveFilmReqFail extends CollectionFilmState {}
 
-class SaveFilmRes extends CollectionFilmState {}
+class SaveFilmRes extends CollectionFilmState {
+  final bool isSaved;
+
+  SaveFilmRes({required this.isSaved});
+}
