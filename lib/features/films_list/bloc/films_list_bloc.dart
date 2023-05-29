@@ -11,16 +11,17 @@ class FilmsListBloc extends Bloc<FilmsListEvent, FilmsListState> {
     on<FilmsListLoad>((event, emit) async {
       try {
         emit(FilmsListRequst());
-        if (maxPage != page) {
+        if (!isLast) {
           FilmList response = await filmsListRepository.getTop(page);
           if (maxPage == 0) {
             maxPage = response.pagesCount;
           }
           listFilm += response.filmList;
           page++;
+          isLast = page > maxPage;
         }
 
-        emit(FilmsListResponse(filmList: listFilm));
+        emit(FilmsListResponse(filmList: listFilm, isLast: isLast));
       } catch (e) {
         emit(FilmsListRequstFail());
       }
@@ -29,6 +30,7 @@ class FilmsListBloc extends Bloc<FilmsListEvent, FilmsListState> {
 
   int page = 1;
   int maxPage = 0;
+  bool isLast = false;
 
   List<Film> listFilm = <Film>[];
 

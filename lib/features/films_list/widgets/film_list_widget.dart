@@ -3,10 +3,15 @@ import 'package:poisk_kino/features/films_list/widgets/widgets.dart';
 import 'package:poisk_kino/repositories/films_list/models/models.dart';
 
 class FilmListWidget extends StatefulWidget {
-  const FilmListWidget({super.key, required this.filmList, this.hotLoadFilms});
+  const FilmListWidget(
+      {super.key,
+      required this.filmList,
+      this.hotLoadFilms,
+      required this.isLast});
 
   final List<Film> filmList;
   final Function? hotLoadFilms;
+  final bool isLast;
 
   @override
   State<FilmListWidget> createState() => _FilmListWidgetState();
@@ -39,10 +44,20 @@ class _FilmListWidgetState extends State<FilmListWidget> {
 
   @override
   Widget build(BuildContext context) {
+    int itemCount =
+        widget.isLast ? widget.filmList.length : widget.filmList.length + 1;
     return ListView.separated(
       controller: _scrollController,
-      itemCount: widget.filmList.length,
+      itemCount: itemCount,
       itemBuilder: (BuildContext context, int i) {
+        if (i == widget.filmList.length && !widget.isLast) {
+          return const SizedBox(
+            height: 40,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
         final Film film = widget.filmList[i];
         return FilmTile(film: film);
       },

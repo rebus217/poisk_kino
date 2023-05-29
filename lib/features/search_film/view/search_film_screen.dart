@@ -17,7 +17,8 @@ class _SearchFilmScreenState extends State<SearchFilmScreen> {
   final SearchFilmBloc _searchFilmBloc =
       SearchFilmBloc(GetIt.I<AbstractFilmsListRepository>());
 
-  Widget _child = const FilmListWidget(filmList: <Film>[]);
+  List<Film> filmList = <Film>[];
+  bool isLast = true;
 
   var searchController = TextEditingController();
 
@@ -31,6 +32,10 @@ class _SearchFilmScreenState extends State<SearchFilmScreen> {
   void _onClear() {
     searchController.clear();
     _searchFilmBloc.add(SearchFilm(keyword: ''));
+  }
+
+  onAdd() {
+    _searchFilmBloc.add(SearchFilmAdd());
   }
 
   @override
@@ -47,19 +52,12 @@ class _SearchFilmScreenState extends State<SearchFilmScreen> {
       body: BlocBuilder<SearchFilmBloc, SearchFilmState>(
         bloc: _searchFilmBloc,
         builder: (context, state) {
-          if (state is SearchFilmReq) {
-            _child = const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
+          if (state is SearchFilmReq) {}
           if (state is SearchFilmRes) {
-            _child = FilmListWidget(filmList: state.filmList);
+            filmList = state.filmList;
+            isLast = state.isLast;
           }
-          if (state is SearchFilmReqFail) {
-            _child = const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
+          if (state is SearchFilmReqFail) {}
 
           return Column(
             children: [
@@ -83,7 +81,11 @@ class _SearchFilmScreenState extends State<SearchFilmScreen> {
                 ),
               ),
               Expanded(
-                child: _child,
+                child: FilmListWidget(
+                  filmList: filmList,
+                  hotLoadFilms: onAdd,
+                  isLast: isLast,
+                ),
               ),
             ],
           );

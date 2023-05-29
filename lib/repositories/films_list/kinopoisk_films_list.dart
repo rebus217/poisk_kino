@@ -22,8 +22,9 @@ class KinopoiskFilmListRepository extends AbstractFilmsListRepository {
   }
 
   @override
-  Future<List<Film>> searchFilm(String keyword) async {
+  Future<FilmList> searchFilm(String keyword, int page) async {
     List<Film> result = <Film>[];
+    int totalPages = 0;
 
     try {
       final Response response = await dio.get("/films", queryParameters: {
@@ -34,6 +35,7 @@ class KinopoiskFilmListRepository extends AbstractFilmsListRepository {
       final Map<String, dynamic> data = response.data;
 
       List<dynamic> rawList = data["items"];
+      totalPages = data["totalPages"];
       result = rawList.map((elem) {
         return Film.fromJson(elem);
       }).toList();
@@ -41,7 +43,7 @@ class KinopoiskFilmListRepository extends AbstractFilmsListRepository {
       GetIt.I<Talker>().handle(e, st);
     }
 
-    return result;
+    return FilmList(filmList: result, pagesCount: totalPages);
   }
 
   @override

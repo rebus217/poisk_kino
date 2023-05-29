@@ -19,6 +19,7 @@ class FilmsListScreen extends StatefulWidget {
 class _FilmsListScreenState extends State<FilmsListScreen> {
   final _filmsListBloc = FilmsListBloc(GetIt.I<AbstractFilmsListRepository>());
   List<Film> filmList = <Film>[];
+  bool isLastFilm = false;
 
   @override
   void initState() {
@@ -61,11 +62,13 @@ class _FilmsListScreenState extends State<FilmsListScreen> {
           builder: (context, state) {
             if (state is FilmsListResponse) {
               filmList = state.filmList;
+              isLastFilm = state.isLast;
             }
             if (state is FilmsListRequst) {}
             return FilmListWidget(
               filmList: filmList,
               hotLoadFilms: onAddFilmsToList,
+              isLast: isLastFilm,
             );
           },
         ));

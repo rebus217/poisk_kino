@@ -32,7 +32,10 @@ class _FilmCollectionScreenState extends State<FilmCollectionScreen> {
         bloc: _filmCollectionBloc,
         builder: (context, state) {
           if (state is FilmCollectionRes) {
-            return FilmListWidget(filmList: state.filmList);
+            return FilmListWidget(
+              filmList: state.filmList,
+              isLast: true,
+            );
           }
 
           return const Center(child: CircularProgressIndicator());

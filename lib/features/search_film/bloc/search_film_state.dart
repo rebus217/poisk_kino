@@ -9,6 +9,7 @@ class SearchFilmReq extends SearchFilmState {}
 class SearchFilmReqFail extends SearchFilmState {}
 
 class SearchFilmRes extends SearchFilmState {
-  SearchFilmRes({required this.filmList});
+  SearchFilmRes( {required this.filmList, this.isLast = false});
   final List<Film> filmList;
+  final bool isLast;
 }

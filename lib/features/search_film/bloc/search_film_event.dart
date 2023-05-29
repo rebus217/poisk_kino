@@ -7,3 +7,7 @@ class SearchFilm extends SearchFilmEvent {
 
   final String keyword;
 }
+
+class SearchFilmAdd extends SearchFilmEvent{
+  
+}
