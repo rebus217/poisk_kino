@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:get_it/get_it.dart';
 import 'package:poisk_kino/features/films_list/widgets/widgets.dart';
 import 'package:poisk_kino/repositories/films_list/models/models.dart';
-import 'package:talker_flutter/talker_flutter.dart';
 
 class FilmListWidget extends StatefulWidget {
   const FilmListWidget({super.key, required this.filmList, this.hotLoadFilms});

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get_it/get_it.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
+import 'package:poisk_kino/repositories/films_list/models/film_list_model.dart';
 import 'package:poisk_kino/repositories/films_list/models/models.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
@@ -44,18 +45,20 @@ class KinopoiskFilmListRepository extends AbstractFilmsListRepository {
   }
 
   @override
-  Future<List<Film>> getTop(int page) async {
+  Future<FilmList> getTop(int page) async {
     List<Film> filmList = <Film>[];
+    int pageCount = 0;
     try {
       final Response<dynamic> response = await dio.get("/films/top",
           queryParameters: {"type": "TOP_100_POPULAR_FILMS", "page": page});
       final List films = response.data["films"];
+      pageCount = response.data["pagesCount"];
       filmList = films.map((film) => Film.fromJson(film)).toList();
     } catch (e, st) {
       GetIt.I<Talker>().handle(e, st);
     }
 
-    return filmList;
+    return FilmList(filmList: filmList, pagesCount: pageCount);
   }
 
   @override

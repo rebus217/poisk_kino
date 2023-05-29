@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
+import 'package:poisk_kino/repositories/films_list/models/film_list_model.dart';
 import 'package:poisk_kino/repositories/films_list/models/models.dart';
 
 part 'films_list_event.dart';
@@ -10,10 +11,16 @@ class FilmsListBloc extends Bloc<FilmsListEvent, FilmsListState> {
     on<FilmsListLoad>((event, emit) async {
       try {
         emit(FilmsListRequst());
-        List<Film> response = await filmsListRepository.getTop(page);
-        listFilm += response;
+        if (maxPage != page) {
+          FilmList response = await filmsListRepository.getTop(page);
+          if (maxPage == 0) {
+            maxPage = response.pagesCount;
+          }
+          listFilm += response.filmList;
+          page++;
+        }
+
         emit(FilmsListResponse(filmList: listFilm));
-        page++;
       } catch (e) {
         emit(FilmsListRequstFail());
       }
@@ -21,6 +28,7 @@ class FilmsListBloc extends Bloc<FilmsListEvent, FilmsListState> {
   }
 
   int page = 1;
+  int maxPage = 0;
 
   List<Film> listFilm = <Film>[];
 

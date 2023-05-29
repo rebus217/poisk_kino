@@ -5,14 +5,16 @@ part 'film_model.g.dart';
 @JsonSerializable()
 class Film {
   Film({
-    required this.nameRu,
-    required this.year,
+    this.nameRu,
+    this.nameEn,
+    this.year,
     required this.posterUrlPreview,
     required this.filmId,
   });
 
-  final String nameRu;
-  final String year;
+  final String? nameRu;
+  final String? nameEn;
+  final String? year;
   final String posterUrlPreview;
 
   final int filmId;

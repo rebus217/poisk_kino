@@ -1,7 +1,8 @@
+import 'package:poisk_kino/repositories/films_list/models/film_list_model.dart';
 import 'package:poisk_kino/repositories/films_list/models/models.dart';
 
 abstract class AbstractFilmsListRepository {
-  Future<List<Film>> getTop(int page);
+  Future<FilmList> getTop(int page);
   Future<FilmDetail> getFilmDetail({required int filmId});
   Future<void> saveToCollection(Film film);
   Future<List<Film>> getCollection();

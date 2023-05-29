@@ -37,7 +37,7 @@ class _FilmDetailsScreenState extends State<FilmDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.film.nameRu),
+        title: Text(widget.film.nameRu ?? "-"),
       ),
       body: BlocBuilder<FilmDetailBloc, FilmDetailState>(
         bloc: _filmDetailBloc,
