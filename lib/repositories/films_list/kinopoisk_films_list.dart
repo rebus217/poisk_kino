@@ -62,13 +62,11 @@ class KinopoiskFilmListRepository extends AbstractFilmsListRepository {
   }
 
   @override
-  Future<List<Film>> getCollection() async {
-    final ref = FirebaseDatabase.instance.ref("filmCollection/${user!.uid}");
-    final snapshot = await ref.get();
+  List<Film> getCollection(DatabaseEvent event) {
     List<Film> filmList = <Film>[];
-    if (snapshot.value != null) {
+    if (event.snapshot.value != null) {
       final Map<Object?, Object?> data =
-          snapshot.value as Map<Object?, Object?>;
+          event.snapshot.value as Map<Object?, Object?>;
 
       Map<String, dynamic> map = Map<String, dynamic>.from(data);
 
@@ -91,13 +89,12 @@ class KinopoiskFilmListRepository extends AbstractFilmsListRepository {
   Future<bool> checkInCollection(int filmId) async {
     final ref = FirebaseDatabase.instance.ref();
 
-    final snapshot = await ref
-        .child("filmCollection")
-        .child(user!.uid)
-        .child("$filmId")
-        .get();
+    final snapshot = await ref.child("filmCollection").child(user!.uid).get();
 
-    return snapshot.exists;
+    final Map<Object?, Object?> data = snapshot.value as Map<Object?, Object?>;
+    Map<String, dynamic> map = Map<String, dynamic>.from(data);
+
+    return map["$filmId"] != null;
   }
 
   @override
