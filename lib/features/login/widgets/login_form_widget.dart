@@ -30,6 +30,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
           TextInputWidget(
             name: "Login",
             controller: loginController,
+            
           ),
           TextInputWidget(
             name: "Password",

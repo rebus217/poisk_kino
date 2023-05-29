@@ -9,11 +9,19 @@ class FilmTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final listTileTheme = theme.listTileTheme;
     return ListTile(
-        leading: Image.network(film.posterUrlPreview),
-        title: Text(film.nameRu ?? film.nameEn ?? "-"),
-        subtitle: Text(film.year ?? "-"),
-        trailing: const Icon(Icons.arrow_forward),
-        onTap: () => context.pushNamed("film", extra: film));
+      leading: Image.network(film.posterUrlPreview),
+      title: Text(
+        film.nameRu ?? film.nameEn ?? "-",
+      ),
+      subtitle: Text(
+        film.year ?? "-",
+        style: listTileTheme.subtitleTextStyle,
+      ),
+      trailing: const Icon(Icons.arrow_forward),
+      onTap: () => context.pushNamed("film", extra: film),
+    );
   }
 }

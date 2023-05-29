@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poisk_kino/router/router.dart';
+import 'package:poisk_kino/theme/theme.dart';
 
 class PoiskKinoApp extends StatelessWidget {
   const PoiskKinoApp({super.key});
@@ -8,9 +9,7 @@ class PoiskKinoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      theme: mainTheme,
       routerConfig: router,
     );
   }

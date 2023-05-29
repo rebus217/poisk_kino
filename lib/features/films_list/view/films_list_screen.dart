@@ -33,6 +33,8 @@ class _FilmsListScreenState extends State<FilmsListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final IconThemeData iconTheme = theme.iconTheme;
     return Scaffold(
         appBar: AppBar(
           title: const Text("Film List"),
@@ -41,19 +43,28 @@ class _FilmsListScreenState extends State<FilmsListScreen> {
                 onPressed: () {
                   context.push("/search_film");
                 },
-                icon: const Icon(Icons.search)),
+                icon: Icon(
+                  Icons.search,
+                  color: iconTheme.color,
+                )),
             IconButton(
               onPressed: () {
                 context.push("/film_collection");
               },
-              icon: const Icon(Icons.bookmark_border_outlined),
+              icon: Icon(
+                Icons.bookmark_border_outlined,
+                color: iconTheme.color,
+              ),
             ),
             IconButton(
               onPressed: () {
                 FirebaseAuth.instance.signOut();
                 context.go("/");
               },
-              icon: const Icon(Icons.logout),
+              icon: Icon(
+                Icons.logout,
+                color: iconTheme.color,
+              ),
             )
           ],
         ),

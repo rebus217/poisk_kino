@@ -24,7 +24,9 @@ class _TextInputWidgetState extends State<TextInputWidget> {
           controller: widget.controller,
           obscureText: widget.obscureText,
           textAlign: TextAlign.center,
-          decoration: InputDecoration(hintText: widget.name),
+          decoration: InputDecoration(
+            hintText: widget.name,
+          ),
         ),
         const SizedBox(
           height: 10,

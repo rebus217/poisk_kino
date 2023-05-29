@@ -5,11 +5,16 @@ class FilmDescription extends StatelessWidget {
   final String? description;
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text("Description"),
-        Text(description ?? "-"),
+        Text(
+          description ?? "-",
+          style: textTheme.bodyLarge,
+        ),
       ],
     );
   }
