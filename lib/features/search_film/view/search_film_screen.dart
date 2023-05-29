@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -19,7 +17,7 @@ class _SearchFilmScreenState extends State<SearchFilmScreen> {
   final SearchFilmBloc _searchFilmBloc =
       SearchFilmBloc(GetIt.I<AbstractFilmsListRepository>());
 
-  Widget _child = FilmListWidget(filmList: <Film>[]);
+  Widget _child = const FilmListWidget(filmList: <Film>[]);
 
   var searchController = TextEditingController();
 
