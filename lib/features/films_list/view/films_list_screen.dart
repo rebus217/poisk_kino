@@ -7,6 +7,7 @@ import 'package:poisk_kino/features/films_list/bloc/films_list_bloc.dart';
 
 import 'package:poisk_kino/features/films_list/widgets/widgets.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
+import 'package:poisk_kino/repositories/films_list/models/film_model.dart';
 
 class FilmsListScreen extends StatefulWidget {
   const FilmsListScreen({super.key});
@@ -17,11 +18,16 @@ class FilmsListScreen extends StatefulWidget {
 
 class _FilmsListScreenState extends State<FilmsListScreen> {
   final _filmsListBloc = FilmsListBloc(GetIt.I<AbstractFilmsListRepository>());
+  List<Film> filmList = <Film>[];
 
   @override
   void initState() {
     _filmsListBloc.add(FilmsListLoad());
     super.initState();
+  }
+
+  void onAddFilmsToList() {
+    _filmsListBloc.add(FilmsListLoad());
   }
 
   @override
@@ -54,10 +60,12 @@ class _FilmsListScreenState extends State<FilmsListScreen> {
           bloc: _filmsListBloc,
           builder: (context, state) {
             if (state is FilmsListResponse) {
-              return FilmListWidget(filmList: state.filmList);
+              filmList = state.filmList;
             }
-            return const Center(
-              child: CircularProgressIndicator(),
+            if (state is FilmsListRequst) {}
+            return FilmListWidget(
+              filmList: filmList,
+              hotLoadFilms: onAddFilmsToList,
             );
           },
         ));

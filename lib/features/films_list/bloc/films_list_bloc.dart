@@ -10,12 +10,19 @@ class FilmsListBloc extends Bloc<FilmsListEvent, FilmsListState> {
     on<FilmsListLoad>((event, emit) async {
       try {
         emit(FilmsListRequst());
-        List<Film> response = await filmsListRepository.getTopTen();
-        emit(FilmsListResponse(filmList: response));
+        List<Film> response = await filmsListRepository.getTop(page);
+        listFilm += response;
+        emit(FilmsListResponse(filmList: listFilm));
+        page++;
       } catch (e) {
         emit(FilmsListRequstFail());
       }
     });
   }
+
+  int page = 1;
+
+  List<Film> listFilm = <Film>[];
+
   final AbstractFilmsListRepository filmsListRepository;
 }
