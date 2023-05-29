@@ -14,9 +14,14 @@ class Film {
   final String nameRu;
   final String year;
   final String posterUrlPreview;
+
   final int filmId;
 
-  factory Film.fromJson(Map<String, dynamic> json) => _$FilmFromJson(json);
+  factory Film.fromJson(Map<String, dynamic> json) {
+    json.putIfAbsent("filmId", () => json['kinopoiskId']);
+    json["year"] = json["year"].toString();
+    return _$FilmFromJson(json);
+  }
 
   Map<String, dynamic> toJson() => _$FilmToJson(this);
 }

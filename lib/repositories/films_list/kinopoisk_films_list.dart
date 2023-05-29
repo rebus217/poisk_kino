@@ -21,8 +21,26 @@ class KinopoiskFilmListRepository extends AbstractFilmsListRepository {
   }
 
   @override
-  void searchFilm() {
-    // TODO: implement searchFilm
+  Future<List<Film>> searchFilm(String keyword) async {
+    List<Film> result = <Film>[];
+
+    try {
+      final Response response = await dio.get("/films", queryParameters: {
+        "keyword": keyword,
+        "order": "RATING",
+        "type": "FILM",
+      });
+      final Map<String, dynamic> data = response.data;
+
+      List<dynamic> rawList = data["items"];
+      result = rawList.map((elem) {
+        return Film.fromJson(elem);
+      }).toList();
+    } catch (e, st) {
+      GetIt.I<Talker>().handle(e, st);
+    }
+
+    return result;
   }
 
   @override

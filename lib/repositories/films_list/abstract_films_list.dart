@@ -7,5 +7,5 @@ abstract class AbstractFilmsListRepository {
   Future<List<Film>> getCollection();
   Future<bool> checkInCollection(int filmId);
   Future<void> deleteFromCollection(int filmId);
-  void searchFilm();
+  Future<List<Film>> searchFilm(String keyword);
 }
