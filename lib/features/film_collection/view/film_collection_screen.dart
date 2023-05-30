@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -13,14 +15,15 @@ class FilmCollectionScreen extends StatefulWidget {
 }
 
 class _FilmCollectionScreenState extends State<FilmCollectionScreen> {
-  final FilmCollectionBloc _filmCollectionBloc =
-      FilmCollectionBloc(GetIt.I<AbstractFilmsListRepository>());
+  final FilmCollectionBloc _filmCollectionBloc = FilmCollectionBloc();
 
   @override
   void initState() {
     _filmCollectionBloc.add(LoadFilmCollection());
     super.initState();
   }
+
+  
 
   @override
   Widget build(BuildContext context) {

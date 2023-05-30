@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:poisk_kino/repositories/collection/collection.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
 import 'package:poisk_kino/repositories/films_list/models/models.dart';
 import 'package:talker_flutter/talker_flutter.dart';
@@ -9,11 +10,11 @@ part 'collection_film_state.dart';
 
 class CollectionFilmBloc
     extends Bloc<CollectionFilmEvent, CollectionFilmState> {
-  CollectionFilmBloc(this._filmsListRepository) : super(SaveFilmInitial()) {
+  CollectionFilmBloc() : super(SaveFilmInitial()) {
     on<SaveFilm>((event, emit) async {
       try {
         emit(SaveFilmReq());
-        await _filmsListRepository.saveToCollection(event.film);
+        await _collectionRepository.saveToCollection(event.film);
         emit(SaveFilmRes(isSaved: true));
       } catch (e, st) {
         emit(SaveFilmReqFail());
@@ -24,7 +25,7 @@ class CollectionFilmBloc
       try {
         emit(SaveFilmReq());
         final bool isSaved =
-            await _filmsListRepository.checkInCollection(event.filmId);
+            await _collectionRepository.checkInCollection(event.filmId);
         emit(SaveFilmRes(isSaved: isSaved));
       } catch (e, st) {
         emit(SaveFilmReqFail());
@@ -34,7 +35,7 @@ class CollectionFilmBloc
     on<RemoveFilm>((event, emit) async {
       try {
         emit(SaveFilmReq());
-        await _filmsListRepository.deleteFromCollection(event.film.filmId);
+        await _collectionRepository.deleteFromCollection(event.film.filmId);
         emit(SaveFilmRes(isSaved: false));
       } catch (e, st) {
         emit(SaveFilmReqFail());
@@ -42,5 +43,7 @@ class CollectionFilmBloc
       }
     });
   }
-  final AbstractFilmsListRepository _filmsListRepository;
+
+  final AbstractCollectionRepository _collectionRepository =
+      FirebaseCollectionRepository();
 }

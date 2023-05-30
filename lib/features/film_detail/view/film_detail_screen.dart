@@ -21,8 +21,7 @@ class _FilmDetailsScreenState extends State<FilmDetailsScreen> {
   final FilmDetailBloc _filmDetailBloc =
       FilmDetailBloc(GetIt.I<AbstractFilmsListRepository>());
 
-  final CollectionFilmBloc _saveFilmBloc =
-      CollectionFilmBloc(GetIt.I<AbstractFilmsListRepository>());
+  final CollectionFilmBloc _saveFilmBloc = CollectionFilmBloc();
 
   bool isSaved = false;
 

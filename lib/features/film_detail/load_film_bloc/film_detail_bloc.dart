@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:poisk_kino/repositories/collection/collection.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
 import 'package:poisk_kino/repositories/films_list/models/models.dart';
 import 'package:talker_flutter/talker_flutter.dart';
@@ -23,7 +24,7 @@ class FilmDetailBloc extends Bloc<FilmDetailEvent, FilmDetailState> {
     on<FilmSave>((event, emit) async {
       try {
         emit(FilmSaveReq());
-        await filmsListRepository.saveToCollection(event.film);
+        await collectionRepository.saveToCollection(event.film);
         emit(FilmSaveRes());
       } catch (e, st) {
         emit(FilmSaveReqFail());
@@ -32,4 +33,6 @@ class FilmDetailBloc extends Bloc<FilmDetailEvent, FilmDetailState> {
     });
   }
   final AbstractFilmsListRepository filmsListRepository;
+  final AbstractCollectionRepository collectionRepository =
+      FirebaseCollectionRepository();
 }
