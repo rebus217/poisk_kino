@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:poisk_kino/features/films_list/bloc/films_list_bloc.dart';
 
 import 'package:poisk_kino/features/films_list/widgets/widgets.dart';
+import 'package:poisk_kino/features/try_again/try_again.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
 import 'package:poisk_kino/shared/models/models.dart';
 
@@ -75,7 +76,9 @@ class _FilmsListScreenState extends State<FilmsListScreen> {
               filmList = state.filmList;
               isLastFilm = state.isLast;
             }
-            if (state is FilmsListRequst) {}
+            if (state is FilmsListRequstFail) {
+              return TryAgainWidget(onTrayAgain: onAddFilmsToList);
+            }
             return FilmListWidget(
               filmList: filmList,
               hotLoadFilms: onAddFilmsToList,

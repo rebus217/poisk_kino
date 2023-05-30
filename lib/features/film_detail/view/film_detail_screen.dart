@@ -5,6 +5,7 @@ import 'package:poisk_kino/features/film_detail/collection_film_bloc/collection_
 import 'package:poisk_kino/features/film_detail/load_film_bloc/film_detail_bloc.dart';
 
 import 'package:poisk_kino/features/film_detail/widgets/widgets.dart';
+import 'package:poisk_kino/features/try_again/try_again.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
 import 'package:poisk_kino/shared/models/models.dart';
 
@@ -41,6 +42,9 @@ class _FilmDetailsScreenState extends State<FilmDetailsScreen> {
       body: BlocBuilder<FilmDetailBloc, FilmDetailState>(
         bloc: _filmDetailBloc,
         builder: (context, state) {
+          if (state is FilmDetailRequestFail) {
+            return TryAgainWidget(onTrayAgain: initState);
+          }
           if (state is FilmDetailResponse) {
             return SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -83,6 +87,9 @@ class _FilmDetailsScreenState extends State<FilmDetailsScreen> {
             }
             if (state is SaveFilmReq) {
               return const CircularProgressIndicator.adaptive();
+            }
+            if (state is SaveFilmReqFail) {
+              return TryAgainWidget(onTrayAgain: initState);
             }
             return Icon(isSaved ? Icons.bookmark_added : Icons.bookmark_add);
           },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poisk_kino/features/film_collection/bloc/film_collection_bloc.dart';
 import 'package:poisk_kino/features/films_list/widgets/widgets.dart';
+import 'package:poisk_kino/features/try_again/try_again.dart';
 
 class FilmCollectionScreen extends StatefulWidget {
   const FilmCollectionScreen({super.key});
@@ -28,6 +29,9 @@ class _FilmCollectionScreenState extends State<FilmCollectionScreen> {
       body: BlocBuilder<FilmCollectionListBloc, FilmCollectionListState>(
         bloc: _filmCollectionBloc,
         builder: (context, state) {
+          if (state is FilmCollectionReqFail) {
+            return TryAgainWidget(onTrayAgain: initState);
+          }
           if (state is FilmCollectionRes) {
             return FilmListWidget(
               filmList: state.filmList,

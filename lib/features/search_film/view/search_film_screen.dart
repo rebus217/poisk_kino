@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:poisk_kino/features/films_list/widgets/widgets.dart';
 import 'package:poisk_kino/features/search_film/bloc/search_film_bloc.dart';
+import 'package:poisk_kino/features/try_again/try_again.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
 import 'package:poisk_kino/shared/models/models.dart';
 
@@ -57,7 +58,9 @@ class _SearchFilmScreenState extends State<SearchFilmScreen> {
             filmList = state.filmList;
             isLast = state.isLast;
           }
-          if (state is SearchFilmReqFail) {}
+          if (state is SearchFilmReqFail) {
+            return TryAgainWidget(onTrayAgain: _onSearch);
+          }
 
           return Column(
             children: [

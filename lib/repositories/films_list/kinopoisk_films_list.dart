@@ -24,23 +24,18 @@ class KinopoiskFilmListRepository extends AbstractFilmsListRepository {
     List<Film> result = <Film>[];
     int totalPages = 0;
 
-    try {
-      final Response response = await dio.get("/films", queryParameters: {
-        "keyword": keyword,
-        "order": "RATING",
-        "type": "FILM",
-      });
-      final Map<String, dynamic> data = response.data;
+    final Response response = await dio.get("/films", queryParameters: {
+      "keyword": keyword,
+      "order": "RATING",
+      "type": "FILM",
+    });
+    final Map<String, dynamic> data = response.data;
 
-      List<dynamic> rawList = data["items"];
-      totalPages = data["totalPages"];
-      result = rawList.map((elem) {
-        return Film.fromJson(elem);
-      }).toList();
-    } catch (e, st) {
-      GetIt.I<Talker>().handle(e, st);
-    }
-
+    List<dynamic> rawList = data["items"];
+    totalPages = data["totalPages"];
+    result = rawList.map((elem) {
+      return Film.fromJson(elem);
+    }).toList();
     return FilmList(filmList: result, pagesCount: totalPages);
   }
 
@@ -48,16 +43,12 @@ class KinopoiskFilmListRepository extends AbstractFilmsListRepository {
   Future<FilmList> getTop(int page) async {
     List<Film> filmList = <Film>[];
     int pageCount = 0;
-    try {
-      final Response<dynamic> response = await dio.get("/films/top",
-          queryParameters: {"type": "TOP_100_POPULAR_FILMS", "page": page});
-      final List films = response.data["films"];
-      pageCount = response.data["pagesCount"];
-      filmList = films.map((film) => Film.fromJson(film)).toList();
-    } catch (e, st) {
-      GetIt.I<Talker>().handle(e, st);
-    }
 
+    final Response<dynamic> response = await dio.get("/films/top",
+        queryParameters: {"type": "TOP_100_POPULAR_FILMS", "page": page});
+    final List films = response.data["films"];
+    pageCount = response.data["pagesCount"];
+    filmList = films.map((film) => Film.fromJson(film)).toList();
     return FilmList(filmList: filmList, pagesCount: pageCount);
   }
 }
