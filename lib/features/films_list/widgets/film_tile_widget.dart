@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:poisk_kino/repositories/films_list/models/film_model.dart';
+import 'package:poisk_kino/shared/models/models.dart';
 
 class FilmTile extends StatelessWidget {
   const FilmTile({super.key, required this.film});

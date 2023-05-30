@@ -1,4 +1,4 @@
-import 'package:poisk_kino/repositories/films_list/models/models.dart';
+import 'package:poisk_kino/shared/models/models.dart';
 
 class FilmList {
   FilmList({required this.filmList, required this.pagesCount});

@@ -3,16 +3,15 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:poisk_kino/repositories/collection/collection.dart';
-
-import 'package:poisk_kino/repositories/films_list/models/models.dart';
+import 'package:poisk_kino/shared/models/models.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
 part 'film_collection_event.dart';
 part 'film_collection_state.dart';
 
-class FilmCollectionBloc
-    extends Bloc<FilmCollectionEvent, FilmCollectionState> {
-  FilmCollectionBloc() : super(FilmCollectionInitial()) {
+class FilmCollectionListBloc
+    extends Bloc<FilmCollectionListEvent, FilmCollectionListState> {
+  FilmCollectionListBloc() : super(FilmCollectionInitial()) {
     on<LoadFilmCollection>((event, emit) async {
       try {
         DatabaseReference filmRef =

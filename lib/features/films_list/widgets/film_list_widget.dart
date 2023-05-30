@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poisk_kino/features/films_list/widgets/widgets.dart';
-import 'package:poisk_kino/repositories/films_list/models/models.dart';
+import 'package:poisk_kino/shared/models/models.dart';
 
 class FilmListWidget extends StatefulWidget {
   const FilmListWidget(

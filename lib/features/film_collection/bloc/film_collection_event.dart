@@ -1,6 +1,5 @@
 part of 'film_collection_bloc.dart';
 
+abstract class FilmCollectionListEvent {}
 
-abstract class FilmCollectionEvent {}
-
-class LoadFilmCollection extends FilmCollectionEvent{}
+class LoadFilmCollection extends FilmCollectionListEvent {}

@@ -4,7 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:poisk_kino/features/films_list/widgets/widgets.dart';
 import 'package:poisk_kino/features/search_film/bloc/search_film_bloc.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
-import 'package:poisk_kino/repositories/films_list/models/film_model.dart';
+import 'package:poisk_kino/shared/models/models.dart';
 
 class SearchFilmScreen extends StatefulWidget {
   const SearchFilmScreen({super.key});

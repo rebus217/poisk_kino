@@ -6,7 +6,7 @@ import 'package:poisk_kino/features/film_detail/load_film_bloc/film_detail_bloc.
 
 import 'package:poisk_kino/features/film_detail/widgets/widgets.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
-import 'package:poisk_kino/repositories/films_list/models/film_model.dart';
+import 'package:poisk_kino/shared/models/models.dart';
 
 class FilmDetailsScreen extends StatefulWidget {
   const FilmDetailsScreen({super.key, required this.film});

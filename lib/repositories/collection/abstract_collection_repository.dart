@@ -1,5 +1,4 @@
-import 'package:firebase_database/firebase_database.dart';
-import 'package:poisk_kino/repositories/films_list/models/models.dart';
+import 'package:poisk_kino/shared/models/models.dart';
 
 abstract class AbstractCollectionRepository {
   Future<void> saveToCollection(Film film);

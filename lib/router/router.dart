@@ -6,7 +6,9 @@ import 'package:poisk_kino/features/films_list/films_list.dart';
 import 'package:poisk_kino/features/login/login.dart';
 import 'package:poisk_kino/features/search_film/search_film.dart';
 import 'package:poisk_kino/features/sign_up/sing_up.dart';
-import 'package:poisk_kino/repositories/films_list/models/film_model.dart';
+
+import '../shared/models/models.dart';
+
 
 final router = GoRouter(routes: [
   GoRoute(

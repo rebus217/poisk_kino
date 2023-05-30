@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
-import 'package:poisk_kino/repositories/films_list/models/film_list_model.dart';
-import 'package:poisk_kino/repositories/films_list/models/models.dart';
+import 'package:poisk_kino/shared/models/models.dart';
 
 part 'films_list_event.dart';
 part 'films_list_state.dart';

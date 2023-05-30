@@ -1,14 +1,14 @@
 part of 'film_collection_bloc.dart';
 
-abstract class FilmCollectionState {}
+abstract class FilmCollectionListState {}
 
-class FilmCollectionInitial extends FilmCollectionState {}
+class FilmCollectionInitial extends FilmCollectionListState {}
 
-class FilmCollectionReq extends FilmCollectionState {}
+class FilmCollectionReq extends FilmCollectionListState {}
 
-class FilmCollectionReqFail extends FilmCollectionState {}
+class FilmCollectionReqFail extends FilmCollectionListState {}
 
-class FilmCollectionRes extends FilmCollectionState {
+class FilmCollectionRes extends FilmCollectionListState {
   FilmCollectionRes({required this.filmList});
 
   final List<Film> filmList;

@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:poisk_kino/repositories/films_list/films_list.dart';
-import 'package:poisk_kino/repositories/films_list/models/models.dart';
+import 'package:poisk_kino/shared/models/models.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
 class KinopoiskFilmListRepository extends AbstractFilmsListRepository {

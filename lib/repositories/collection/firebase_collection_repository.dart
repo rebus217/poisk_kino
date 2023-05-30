@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:poisk_kino/repositories/collection/collection.dart';
-import 'package:poisk_kino/repositories/films_list/models/film_model.dart';
+import 'package:poisk_kino/shared/models/models.dart';
 
 class FirebaseCollectionRepository extends AbstractCollectionRepository {
   User? user = FirebaseAuth.instance.currentUser;

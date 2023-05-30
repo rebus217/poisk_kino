@@ -1,4 +1,4 @@
-import 'package:poisk_kino/repositories/films_list/models/models.dart';
+import 'package:poisk_kino/shared/models/models.dart';
 
 abstract class AbstractFilmsListRepository {
   Future<FilmList> getTop(int page);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:poisk_kino/repositories/films_list/models/models.dart';
+import 'package:poisk_kino/shared/models/models.dart';
 
 class FilmInfoWidget extends StatelessWidget {
   const FilmInfoWidget({super.key, required this.filmDetail});
