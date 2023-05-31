@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
 
-import 'poisk_kino_config.dart';
+import 'constants.dart';
 
 Dio poiskKinoDio() {
   Dio dio = Dio(
     BaseOptions(
-      baseUrl: PoiskKinoConfig.baseUrl,
+      baseUrl: baseUrl,
       headers: {
-        'X-API-KEY': PoiskKinoConfig.apiKey,
+        'X-API-KEY': apiKey,
         'Content-Type': 'application/json',
       },
     ),

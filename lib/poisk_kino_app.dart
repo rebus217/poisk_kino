@@ -1,9 +1,6 @@
-import 'package:dio/dio.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poisk_kino/poisk_kino_dio.dart';
-import 'package:poisk_kino/poisk_kino_config.dart';
 import 'package:poisk_kino/poisk_kino_get_It.dart';
 import 'package:poisk_kino/router/router.dart';
 import 'package:poisk_kino/theme/theme.dart';
